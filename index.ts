@@ -1,17 +1,32 @@
-/*
- * @Author: hhhhhq
- * @Date: 2020-06-19 21:31:49
- * @LastEditors: hhhhhq
- * @LastEditTime: 2020-07-05 07:56:58
- * @Description: file content
- */ 
-// 枚举类型
-enum daysOfAWeek {
-  SUN, MON, TUS, WED, THU, FRI, SAT
+
+interface Person {
+  first_name: string
+  last_name?: string
+
+  print?(): void
+
+  [propName: string]: any
 }
 
-let day: daysOfAWeek
+let person = {
+  first_name: "Jld",
+  // last_name: "love",
+  // age: 30
+}
 
-day = daysOfAWeek.MON
+class Programmer implements Person {
+  first_name: string
+}
 
-console.log(day)
+const sayName = (o: Person) => {
+  console.log(o.first_name + o.last_name)
+}
+
+const programmer = new Programmer()
+programmer.first_name = "Jld1"
+
+// 类型断言
+// sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
+// sayName(programmer)
+
+sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
