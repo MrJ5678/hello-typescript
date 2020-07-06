@@ -1,8 +1,15 @@
+/*
+ * @Author: hhhhhq
+ * @Date: 2020-07-05 10:15:14
+ * @LastEditors: hhhhhq
+ * @LastEditTime: 2020-07-06 10:08:33
+ * @Description: file content
+ */ 
 // 接口
 interface Named {
   name: string
 
-  // 接口中到方法没有方法体
+  // 接口中的方法没有方法体
   print(name: string): void
 }
 
