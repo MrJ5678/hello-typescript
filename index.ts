@@ -1,40 +1,53 @@
-/*
- * @Author: hhhhhq
- * @Date: 2020-07-05 10:15:14
- * @LastEditors: hhhhhq
- * @LastEditTime: 2020-07-06 10:08:33
- * @Description: file content
- */ 
-// 接口
-interface Named {
-  name: string
 
-  // 接口中的方法没有方法体
-  print(name: string): void
+/* interface Person {
+  // 只读 不可修改
+  readonly first_name: string
+  last_name?: string
+
+  print(callback: PrintCallback): void
+
+  [propName: string]: any
+} */
+
+let x: any = 'hi hi'
+// <string> 是告诉编译器 此时x看作字符串
+let s = (<string>x).substring(0,3)
+console.log(s)
+
+/* interface PrintCallback {
+  // 可以看作是匿名函数
+  (success: boolean): void
 }
 
-const sayName = (o: Named) => {
-  o.print(o.name)
+let printCallback: PrintCallback
+printCallback = (suc: boolean): void => {
+  console.log("callback", suc)
 }
 
-const person = {
-  name: 'Jld',
-  age: 29,
-  print(name: string): void {
-    console.log(name)
+let person = {
+  first_name: "Jld",
+  // last_name: "love",
+  age: 30,
+  print(callback: PrintCallback): void {
+    callback(true)
   }
 }
 
-sayName(person)
+person.print(printCallback) */
 
-// class Person {
-//   name: string
-
-//   constructor(name: string) {
-//     this.name = name
-//   }
+// class Programmer implements Person {
+//   first_name: string
 // }
 
-// let aperson = new Person("Jld")
+// const sayName = (o: Person) => {
+//   console.log(o.first_name + o.last_name)
+// }
 
-// sayName(aperson)
+// const programmer: Person = new Programmer()
+// programmer.first_name = "Jld1"
+
+// 类型断言
+// sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
+// sayName(programmer)
+
+// sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
