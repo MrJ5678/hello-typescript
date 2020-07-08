@@ -1,53 +1,33 @@
-
-/* interface Person {
-  // 只读 不可修改
-  readonly first_name: string
-  last_name?: string
-
-  print(callback: PrintCallback): void
-
-  [propName: string]: any
-} */
-
-let x: any = 'hi hi'
-// <string> 是告诉编译器 此时x看作字符串
-let s = (<string>x).substring(0,3)
-console.log(s)
-
-/* interface PrintCallback {
-  // 可以看作是匿名函数
-  (success: boolean): void
+interface Person {
+  name: string
 }
 
-let printCallback: PrintCallback
-printCallback = (suc: boolean): void => {
-  console.log("callback", suc)
+interface Employee {
+  age: number
 }
 
-let person = {
-  first_name: "Jld",
-  // last_name: "love",
+// 继承另一个接口
+interface Programmer extends Person {
+  age: number
+}
+
+let p: Programmer = {
   age: 30,
-  print(callback: PrintCallback): void {
-    callback(true)
-  }
+  name: "Jld"
 }
 
-person.print(printCallback) */
+// 类不能继承多个类
+// 但可以实现多个接口
+class P implements Person, Employee {
+  name: string
+  age: number
+}
 
-// class Programmer implements Person {
-//   first_name: string
-// }
+let p1: P = {
+  name: "Jld",
+  age: 30
+}
 
-// const sayName = (o: Person) => {
-//   console.log(o.first_name + o.last_name)
-// }
+let p2: Person = p1
 
-// const programmer: Person = new Programmer()
-// programmer.first_name = "Jld1"
-
-// 类型断言
-// sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-// sayName(programmer)
-
-// sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
+let p3: Employee = p1
