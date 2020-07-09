@@ -31,3 +31,5 @@ let p1: P = {
 let p2: Person = p1
 
 let p3: Employee = p1
+
+console.log(p2, p3)
