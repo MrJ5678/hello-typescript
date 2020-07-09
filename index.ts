@@ -1,54 +1,34 @@
+class Component {
+  private width: number
+  private height: number
 
-interface Person {
-  // 只读 不可修改
-  readonly first_name: string
-  last_name: string
+  constructor(width: number, height: number) {
+    this.width = width
+    this.height = height
+  }
 
-  // print(callback: PrintCallback): void
-
-  // [propName: string]: any
-}
-
-// let x: any = 'hi hi'
-// // <string> 是告诉编译器 此时x看作字符串
-// let s = (<string>x).substring(0,3)
-// console.log(s)
-
-/* interface PrintCallback {
-  // 可以看作是匿名函数
-  (success: boolean): void
-}
-
-let printCallback: PrintCallback
-printCallback = (suc: boolean): void => {
-  console.log("callback", suc)
-}
-
-let person = {
-  first_name: "Jld",
-  // last_name: "love",
-  age: 30,
-  print(callback: PrintCallback): void {
-    callback(true)
+  display(): void {
+    console.log('displaying')
   }
 }
 
-person.print(printCallback) */
-
-// class Programmer implements Person {
-//   first_name: string
-// }
-
-const sayName = (o: Person) => {
-  console.log(o.first_name + o.last_name)
+// 接口继承类
+// 接口继承类的方法和属性, 但不实现
+// 也可以定义自己的方法/属性
+interface Widget extends Component {
+  hide(): void
+  size: number
 }
 
-// const programmer: Person = new Programmer()
-// programmer.first_name = "Jld1"
+class Button extends Component implements Widget {
+  size: number
+  hide(): void {
+    console.log("hiding")
+  }
+}
 
-// 类型断言
-// sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-// sayName(programmer)
+let w: Widget = new Button(1, 2)
 
-// sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
+console.log(w)
+w.display()
+w.hide()
