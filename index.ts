@@ -1,18 +1,18 @@
 
-/* interface Person {
+interface Person {
   // 只读 不可修改
   readonly first_name: string
-  last_name?: string
+  last_name: string
 
-  print(callback: PrintCallback): void
+  // print(callback: PrintCallback): void
 
-  [propName: string]: any
-} */
+  // [propName: string]: any
+}
 
-let x: any = 'hi hi'
-// <string> 是告诉编译器 此时x看作字符串
-let s = (<string>x).substring(0,3)
-console.log(s)
+// let x: any = 'hi hi'
+// // <string> 是告诉编译器 此时x看作字符串
+// let s = (<string>x).substring(0,3)
+// console.log(s)
 
 /* interface PrintCallback {
   // 可以看作是匿名函数
@@ -39,15 +39,16 @@ person.print(printCallback) */
 //   first_name: string
 // }
 
-// const sayName = (o: Person) => {
-//   console.log(o.first_name + o.last_name)
-// }
+const sayName = (o: Person) => {
+  console.log(o.first_name + o.last_name)
+}
 
 // const programmer: Person = new Programmer()
 // programmer.first_name = "Jld1"
 
 // 类型断言
 // sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
+sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
 // sayName(programmer)
 
 // sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
