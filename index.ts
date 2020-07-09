@@ -1,35 +1,56 @@
-interface States {
-  [state: string]: boolean
+interface Todo {
+  userId: number
+  id: number
+  title: string
+  completed: boolean
 }
 
-let s: States = {
-  enabled: true,
-  maximized: false
+class AnotherTodo {
+  userId: number
+  id: number
+  title: string
+  completed: boolean
 }
 
-// console.log(s)
-// console.log(s["maximized"])
+let anotherTodo: AnotherTodo[] = [
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "delectus aut autem",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "aut delectus autem",
+    "completed": true
+  },
+  {
+    "userId": 1,
+    "id": 3,
+    "title": "autem delectus aut",
+    "completed": false
+  },
+]
 
-interface States2 {
-  [index: number]: number
-}
 
-// let s1: States2 = [true, true, false, false]
-
-let s2: States2 = [1, 12, 12, 3]
-
-// console.log(s1);
-// console.log(s1[0])
-
-// console.log(s2)
-// console.log(s2[0])
-
-interface States3 {
-  [index: number]: boolean
-  length: number
-  pop(): boolean
-} 
-
-let s3: States3 = [true, true, false, false]
-console.log(s3)
-console.log(s3.length)
+let todos: Todo[] = [
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "delectus aut autem",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "aut delectus autem",
+    "completed": true
+  },
+  {
+    "userId": 1,
+    "id": 3,
+    "title": "autem delectus aut",
+    "completed": false
+  },
+]
