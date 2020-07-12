@@ -1,54 +1,35 @@
+class Person {
+  private _name: string
+  private _age: number
 
-interface Person {
-  // 只读 不可修改
-  readonly first_name: string
-  last_name: string
+  constructor(name: string, age: number) {
+    this._name = name
+    this._age = age
+  }
 
-  // print(callback: PrintCallback): void
+  // 读取name
+  getName(): string {
+    return this._name
+  }
 
-  // [propName: string]: any
-}
+  // 设置
+  setName(name: string): void {
+    this._name = name
+  }
 
-// let x: any = 'hi hi'
-// // <string> 是告诉编译器 此时x看作字符串
-// let s = (<string>x).substring(0,3)
-// console.log(s)
+  get name(): string {
+    return this._name
+  }
 
-/* interface PrintCallback {
-  // 可以看作是匿名函数
-  (success: boolean): void
-}
-
-let printCallback: PrintCallback
-printCallback = (suc: boolean): void => {
-  console.log("callback", suc)
-}
-
-let person = {
-  first_name: "Jld",
-  // last_name: "love",
-  age: 30,
-  print(callback: PrintCallback): void {
-    callback(true)
+  set name(name: string) {
+    this._name = name
   }
 }
 
-person.print(printCallback) */
+let p: Person = new Person("Jld", 22)
+// 输出name
+console.log(p.name)
 
-// class Programmer implements Person {
-//   first_name: string
-// }
-
-const sayName = (o: Person) => {
-  console.log(o.first_name + o.last_name)
-}
-
-// const programmer: Person = new Programmer()
-// programmer.first_name = "Jld1"
-
-// 类型断言
-// sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-// sayName(programmer)
-
-// sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
+// 修改name
+p.name = "loved"
+console.log(p)
