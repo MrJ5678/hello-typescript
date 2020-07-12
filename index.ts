@@ -1,54 +1,53 @@
+// 函数名相同, 参数不同
+// 定义但不实现
+function sum(x: number, y: number): number
+function sum(x: number, y: number, z: number): number
 
-interface Person {
-  // 只读 不可修改
-  readonly first_name: string
-  last_name: string
-
-  // print(callback: PrintCallback): void
-
-  // [propName: string]: any
+function sum(x: number, y: number, z?: number): number {
+  // console.log(typeof z)
+  if(typeof z === 'undefined') {
+    return x + y
+  }
+  return x + y + z
 }
 
-// let x: any = 'hi hi'
-// // <string> 是告诉编译器 此时x看作字符串
-// let s = (<string>x).substring(0,3)
-// console.log(s)
+// console.log(sum(1, 2, 3))
 
-/* interface PrintCallback {
-  // 可以看作是匿名函数
-  (success: boolean): void
-}
+function divide(x: number, y: number): number 
+function divide(str: string, y: number): string[]
 
-let printCallback: PrintCallback
-printCallback = (suc: boolean): void => {
-  console.log("callback", suc)
-}
-
-let person = {
-  first_name: "Jld",
-  // last_name: "love",
-  age: 30,
-  print(callback: PrintCallback): void {
-    callback(true)
+function divide(x: any, y: number): any {
+  if(typeof x === 'number') {
+    return x / y
+  } else if( typeof x === 'string') {
+    return [x.substring(0, y), x.substring(y)]
   }
 }
 
-person.print(printCallback) */
+let n: number = divide(6, 2)
+console.log(n)
 
-// class Programmer implements Person {
-//   first_name: string
-// }
+let s: string[] = divide('JldLove', 4)
+console.log(s)
 
-const sayName = (o: Person) => {
-  console.log(o.first_name + o.last_name)
+class Util {
+  static divide(x: number, y: number): number 
+  static divide(str: string, y: number): string[]
+
+  static divide(x: any, y: number): any {
+    if(typeof x === 'number') {
+      return x / y
+    } else if( typeof x === 'string') {
+      return [x.substring(0, y), x.substring(y)]
+    }
+  }
 }
 
-// const programmer: Person = new Programmer()
-// programmer.first_name = "Jld1"
+// let a: Util = new Util()
+// console.log(a.divide(6, 2))
+// console.log(a.divide('helloworld', 5))
 
-// 类型断言
-// sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-// sayName(programmer)
-
-// sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
+let c: number = Util.divide(6,2)
+console.log(c)
+let d: string[] = Util.divide('helloworld', 5)
+console.log(d)
