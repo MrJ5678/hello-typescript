@@ -1,54 +1,37 @@
-
-interface Person {
-  // 只读 不可修改
-  readonly first_name: string
-  last_name: string
-
-  // print(callback: PrintCallback): void
-
-  // [propName: string]: any
+// 1
+let a: any
+a = function(): void {
+  console.log('It work')
 }
 
-// let x: any = 'hi hi'
-// // <string> 是告诉编译器 此时x看作字符串
-// let s = (<string>x).substring(0,3)
-// console.log(s)
-
-/* interface PrintCallback {
-  // 可以看作是匿名函数
-  (success: boolean): void
-}
-
-let printCallback: PrintCallback
-printCallback = (suc: boolean): void => {
-  console.log("callback", suc)
-}
-
-let person = {
-  first_name: "Jld",
-  // last_name: "love",
-  age: 30,
-  print(callback: PrintCallback): void {
-    callback(true)
+function func(): any {
+  return function(): void {
+    console.log('It work')
   }
 }
 
-person.print(printCallback) */
+// 2
+let c: Function
 
-// class Programmer implements Person {
-//   first_name: string
-// }
-
-const sayName = (o: Person) => {
-  console.log(o.first_name + o.last_name)
+c = function(): void {
+  console.log('It work')
 }
 
-// const programmer: Person = new Programmer()
-// programmer.first_name = "Jld1"
+// 3
+let d: (para: string) => string
+d = function(params: string): string {
+  return params
+}
 
-// 类型断言
-// sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-// sayName(programmer)
+// 4
+type e = (para: string) => string
+const f: e = function(params: string): string {
+  return params
+}
 
-// sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
+// 5
+interface g {
+  (para: string): string
+}
+
+const h: g = (pass: string): string => pass
