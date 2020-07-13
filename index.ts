@@ -1,54 +1,60 @@
+// 泛型class
 
-interface Person {
-  // 只读 不可修改
-  readonly first_name: string
-  last_name: string
+class List<T> {
+  private data: T[]
 
-  // print(callback: PrintCallback): void
+  constructor(elements: T[]) {
+    this.data = elements
+  }
 
-  // [propName: string]: any
-}
+  add(t: T) {
+    this.data.push(t)
+  }
 
-// let x: any = 'hi hi'
-// // <string> 是告诉编译器 此时x看作字符串
-// let s = (<string>x).substring(0,3)
-// console.log(s)
+  remove(t: T) {
+    let index = this.data.indexOf(t)
+    if(index > -1) {
+      this.data.splice(index, 1)
+    }
+  }
 
-/* interface PrintCallback {
-  // 可以看作是匿名函数
-  (success: boolean): void
-}
-
-let printCallback: PrintCallback
-printCallback = (suc: boolean): void => {
-  console.log("callback", suc)
-}
-
-let person = {
-  first_name: "Jld",
-  // last_name: "love",
-  age: 30,
-  print(callback: PrintCallback): void {
-    callback(true)
+  asArray(): T[] {
+    return this.data
   }
 }
 
-person.print(printCallback) */
+let numbers = new List<number>([1, 2, 3, 4, 5])
+numbers.add(6)
+numbers.remove(3)
+let numArray = numbers.asArray()
 
-// class Programmer implements Person {
-//   first_name: string
-// }
+// console.log(numArray)
 
-const sayName = (o: Person) => {
-  console.log(o.first_name + o.last_name)
+let fruits = new List<string>(["apple", "banana", "peach"])
+fruits.add("pair")
+fruits.remove("banana")
+let fruitsArr = fruits.asArray()
+
+// console.log(fruitsArr)
+
+class Pair<F, S> {
+  private _first: F
+  private _second: S
+
+  constructor(first: F, second: S) {
+    this._first = first
+    this._second = second
+  }
+
+  get first(): F {
+    return this._first
+  }
+
+  get second(): S {
+    return this._second
+  }
 }
 
-// const programmer: Person = new Programmer()
-// programmer.first_name = "Jld1"
-
-// 类型断言
-// sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-// sayName(programmer)
-
-// sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
+let pair = new Pair<boolean, string>(true, "Jld")
+console.log(pair.first)
+console.log(pair.second)
