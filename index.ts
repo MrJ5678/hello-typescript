@@ -52,3 +52,39 @@ sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
 // sayName(programmer)
 
 // sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
+interface Pair<F, S> {
+  first: F
+  second: S
+}
+
+let p: Pair<string, number> = { first: "Jld", second: 30 }
+console.log(p)
+
+interface Command<T, R> {
+  id: T
+
+  run(): R
+}
+
+let c: Command<string, number> = {
+  id: Math.random().toString(36),
+  run(): number {
+    return 3
+  }
+}
+
+console.log(c.id)
+console.log(c.run())
+
+interface ElementChecker {
+  <T>(items: T[], toBeChecked: T, atIndex: number): boolean
+}
+
+function checkElementAt<T>(elements: T[], toBeChecked: T, atIndex: number): boolean {
+  return elements[atIndex] === toBeChecked
+}
+
+let checker: ElementChecker = checkElementAt
+let items = [1, 3, 5, 7]
+let b: boolean = checker<number>(items, 5, 2)
+console.log(b)
