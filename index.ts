@@ -1,54 +1,54 @@
-
-interface Person {
-  // 只读 不可修改
-  readonly first_name: string
-  last_name: string
-
-  // print(callback: PrintCallback): void
-
-  // [propName: string]: any
+interface Collection<T> {
+  add(t: T): void
+  remove(t: T): void
+  asArray(): T[]
 }
 
-// let x: any = 'hi hi'
-// // <string> 是告诉编译器 此时x看作字符串
-// let s = (<string>x).substring(0,3)
-// console.log(s)
-
-/* interface PrintCallback {
-  // 可以看作是匿名函数
-  (success: boolean): void
+interface Collection1<T> extends Collection<T> {
+  getElementAt(index: number): T
 }
 
-let printCallback: PrintCallback
-printCallback = (suc: boolean): void => {
-  console.log("callback", suc)
-}
+class List<T> implements Collection<T> {
+  private data: T[] = [];
 
-let person = {
-  first_name: "Jld",
-  // last_name: "love",
-  age: 30,
-  print(callback: PrintCallback): void {
-    callback(true)
+  constructor(elements: T[]) {
+      this.data = elements;
+  }
+
+  add(t: T): void {
+      this.data.push(t);
+  }
+
+  remove(t: T): void {
+      let index = this.data.indexOf(t);
+      if (index > -1) {
+          this.data.splice(index, 1);
+      }
+  }
+
+  asArray(): T[] {
+      return this.data;
   }
 }
 
-person.print(printCallback) */
+let numbers: Collection<number> = new List<number>([1, 2, 3])
+numbers.add(4)
+numbers.remove(2)
+console.log(numbers)
 
-// class Programmer implements Person {
-//   first_name: string
-// }
+class BookList<T> extends List<T> {
 
-const sayName = (o: Person) => {
-  console.log(o.first_name + o.last_name)
 }
 
-// const programmer: Person = new Programmer()
-// programmer.first_name = "Jld1"
+let bookList: BookList<Boolean> = new BookList<boolean>([true, false])
+console.log(bookList)
 
-// 类型断言
-// sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-sayName({first_name: "Jld2", last_name: "love", age: 30} as Person)
-// sayName(programmer)
+let bookList1: BookList<number> = new BookList<number>([1, 2])
+console.log(bookList1)
 
-// sayName({first_name: "Jld2", lasdddt_name: "love", age: 30})
+class MovieList extends List<boolean> {
+
+}
+
+let movieList: MovieList = new MovieList([true, false])
+console.log(movieList)
